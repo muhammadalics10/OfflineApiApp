@@ -17,6 +17,11 @@
 /.idea/misc.xml
 /.idea/runConfigurations.xml
 /.idea/vcs.xml
+/.idea/AndroidProjectSystem.xml
+/.idea/gradle.xml
+/.idea/misc.xml
+/.idea/runConfigurations.xml
+/.idea/vcs.xml
 /build
 /captures
 .externalNativeBuild
