@@ -1,0 +1,57 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/main\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".MainActivity\">\n\n    <LinearLayout\n        android:orientation=\"vertical\"\n        android:gravity=\"center\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\">\n\n        <ImageView\n            android:id=\"@+id/imgNoInternet\"\n            android:src=\"@drawable/ic_no_internet\"\n            android:visibility=\"gone\"\n            android:layout_width=\"200dp\"\n            android:layout_height=\"200dp\"/>\n\n        <TextView\n            android:id=\"@+id/txtMessage\"\n            android:text=\"No Internet. Please connect.\"\n            android:visibility=\"gone\"\n            android:layout_height=\"match_parent\"\n            android:layout_width=\"wrap_content\"/>\n\n        <TextView\n            android:id=\"@+id/txtData\"\n            android:text=\"\"\n            android:layout_height=\"match_parent\"\n            android:layout_width=\"wrap_content\"/>\n\n        <Button\n            android:id=\"@+id/btnCrash\"\n            android:text=\"Crash App\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginTop=\"16dp\"/>\n    </LinearLayout>\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 5a943b5132ba95a1a52024525e066835e40dcbbb)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1768809391924)
+@@ -14,27 +14,23 @@
+         android:layout_height="match_parent">
+ 
+         <ImageView
+-            android:id="@+id/imgNoInternet"
+             android:src="@drawable/ic_no_internet"
+             android:visibility="gone"
+             android:layout_width="200dp"
+             android:layout_height="200dp"/>
+ 
+         <TextView
+-            android:id="@+id/txtMessage"
+             android:text="No Internet. Please connect."
+             android:visibility="gone"
+             android:layout_height="match_parent"
+             android:layout_width="wrap_content"/>
+ 
+         <TextView
+-            android:id="@+id/txtData"
+             android:text=""
+             android:layout_height="match_parent"
+             android:layout_width="wrap_content"/>
+ 
+         <Button
+-            android:id="@+id/btnCrash"
+             android:text="Crash App"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n    <color name=\"black\">#FF000000</color>\n    <color name=\"white\">#FFFFFFFF</color>\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml
+--- a/app/src/main/res/values/colors.xml	(revision 5a943b5132ba95a1a52024525e066835e40dcbbb)
++++ b/app/src/main/res/values/colors.xml	(date 1768809391918)
+@@ -1,5 +1,2 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<resources>
+-    <color name="black">#FF000000</color>
+-    <color name="white">#FFFFFFFF</color>
+-</resources>
+\ No newline at end of file
++<resources></resources>
+\ No newline at end of file
