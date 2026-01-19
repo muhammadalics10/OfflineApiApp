@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "821020462862",
+    "project_id": "fourthtask-f4a46",
+    "storage_bucket": "fourthtask-f4a46.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821020462862:android:831e974ba37182b715115f",
+        "android_client_info": {
+          "package_name": "com.example.fourthtask"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmntG2GOQpp3vzzc9Io1zjnArygdQFlFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
