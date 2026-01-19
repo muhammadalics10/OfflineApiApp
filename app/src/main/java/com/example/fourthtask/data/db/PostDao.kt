@@ -13,4 +13,8 @@ interface PostDao {
 
     @Query("SELECT * FROM posts")
     suspend fun getPosts(): List<PostEntity>
+
+    @Query("SELECT COUNT(*) FROM posts")
+    suspend fun getCount(): Int
 }
+

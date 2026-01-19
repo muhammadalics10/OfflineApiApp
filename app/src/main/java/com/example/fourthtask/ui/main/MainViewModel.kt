@@ -8,20 +8,17 @@ import com.example.fourthtask.data.repository.PostRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: PostRepository) : ViewModel() {
+class MainViewModel(
+    private val repository: PostRepository
+) : ViewModel() {
 
     val postsLiveData = MutableLiveData<List<PostEntity>>()
 
     fun loadPosts(isOnline: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-
-            if (isOnline) {
-                val apiPosts = repository.fetchPostsOnline()
-                repository.savePostsOffline(apiPosts)
-            }
-
-            val offlinePosts = repository.getOfflinePosts()
-            postsLiveData.postValue(offlinePosts)
+            val data = repository.getPosts(isOnline)
+            postsLiveData.postValue(data)
         }
     }
 }
+

@@ -10,18 +10,26 @@ class PostRepository(
     private val dao: PostDao
 ) {
 
-    suspend fun fetchPostsOnline(): List<Post> {
-        return api.getPosts()
-    }
+    suspend fun getPosts(isOnline: Boolean): List<PostEntity> {
 
-    suspend fun savePostsOffline(posts: List<Post>) {
-        val entities = posts.map {
-            PostEntity(it.id, it.title, it.body)
+        val count = dao.getCount()
+
+        if (isOnline && count == 0) {
+            // Fetch only once
+            val apiPosts = api.getPosts()
+
+            val entities = apiPosts.map {
+                PostEntity(
+                    id = it.id,
+                    title = it.title,
+                    body = it.body
+                )
+            }
+
+            dao.insertPosts(entities)
         }
-        dao.insertPosts(entities)
-    }
 
-    suspend fun getOfflinePosts(): List<PostEntity> {
+        // Always return cached data
         return dao.getPosts()
     }
 }
