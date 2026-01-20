@@ -12,11 +12,13 @@ import com.example.fourthtask.data.db.AppDatabase
 import com.example.fourthtask.data.model.PostAdapter
 import com.example.fourthtask.data.repository.PostRepository
 import com.example.fourthtask.ui.main.MainViewModel
+import com.example.fourthtask.utils.AppLogger
 import com.example.fourthtask.utils.NetworkUtils
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
+    val TAG = "MainActivity"
     private lateinit var viewModel: MainViewModel
     private val adapter = PostAdapter()
 
@@ -24,8 +26,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        AppLogger.i(TAG, "App Started")
+
         val recycler = findViewById<RecyclerView>(R.id.recyclerView)
         val noInternetLayout = findViewById<View>(R.id.noInternetLayout)
+        val btnRetry = findViewById<Button>(R.id.btnRetry)
 
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = adapter
@@ -34,32 +39,43 @@ class MainActivity : AppCompatActivity() {
         val repository = PostRepository(RetrofitClient.api, db.postDao())
         viewModel = MainViewModel(repository)
 
-        val isOnline = NetworkUtils.isInternetAvailable(this)
+        fun loadData() {
+            val isOnline = NetworkUtils.isInternetAvailable(this)
+            AppLogger.i(TAG, "Internet = $isOnline")
 
-        // FIRST LAUNCH NO INTERNET HANDLING
-        lifecycleScope.launch {
-            val hasData = db.postDao().getCount() > 0
+            lifecycleScope.launch {
+                val hasData = db.postDao().getCount() > 0
 
-            if (!isOnline && !hasData) {
-                noInternetLayout.visibility = View.VISIBLE
-                recycler.visibility = View.GONE
-                return@launch
+                if (!isOnline && !hasData) {
+                    AppLogger.w(TAG, "No internet and no cache")
+                    noInternetLayout.visibility = View.VISIBLE
+                    recycler.visibility = View.GONE
+                    return@launch
+                }
+
+                noInternetLayout.visibility = View.GONE
+                recycler.visibility = View.VISIBLE
+                viewModel.loadPosts(isOnline)
             }
-
-            noInternetLayout.visibility = View.GONE
-            recycler.visibility = View.VISIBLE
-            viewModel.loadPosts(isOnline)
         }
+
+        btnRetry.setOnClickListener {
+            AppLogger.i(TAG, "Retry clicked")
+            loadData()
+        }
+
+        loadData()
 
         viewModel.postsLiveData.observe(this) {
             adapter.submitData(it)
         }
 
-        // Crash Button
         findViewById<Button>(R.id.btnCrash).setOnClickListener {
-            throw RuntimeException("Crash Test for Firebase")
+            AppLogger.e(TAG, "Manual crash triggered")
+            throw RuntimeException("Crashlytics Test Crash")
         }
     }
 }
+
 
 
